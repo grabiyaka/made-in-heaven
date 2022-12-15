@@ -14,7 +14,7 @@
     <div id="app">
         <div>
             <div>
-                <input type="text" v-model="name">
+                <input type="text" v-model="name" placeholder="your name">
                 <h3 v-if="name != ''">{{ name }} лох</h3>
             </div>
             count: {{ count }}
@@ -22,6 +22,13 @@
                 <button @click="count++">+</button>
                 <button @click="count--">-</button>
             </div>
+            <div>
+                <button @click="danger">не нажимать!</button>
+            </div>
+        </div>
+        <button @click="sun = !sun">on/off</button>
+        <div v-if="sun" class="the_sun">
+
         </div>
     </div>
 </body>
@@ -30,7 +37,8 @@
         data() {
             return {
                 count: 0,
-                name: ''
+                name: '',
+                sun: false
             }
         },
 
@@ -39,11 +47,46 @@
         },
 
         methods: {
-
+            danger() {
+                for (i = 0; i < 10;) {
+                    alert('Ваня лох')
+                }
+            }
         }
     }
 
     Vue.createApp(app).mount('#app')
 </script>
+
+<style>
+    body {
+        text-align: center;
+    }
+
+    .the_sun {
+        position: absolute;
+        background: darkorange;
+        border-radius: 100px;
+        left: auto;
+        right: auto;
+        animation: anim infinite .5s;
+        transition: all ease .5s;
+    }
+
+    @keyframes anim {
+        0% {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+
+        100% {
+            width: 1000px;
+            height: 1000px;
+            border-radius: 1000px;
+            background: black;
+        }
+    }
+</style>
 
 </html>
