@@ -12,23 +12,9 @@
 
 <body>
     <div id="app">
-        <div>
-            <div>
-                <input type="text" v-model="name" placeholder="your name">
-                <h3 v-if="name != ''">{{ name }} лох</h3>
-            </div>
-            count: {{ count }}
-            <div>
-                <button @click="count++">+</button>
-                <button @click="count--">-</button>
-            </div>
-            <div>
-                <button @click="danger">не нажимать!</button>
-            </div>
-        </div>
-        <button @click="sun = !sun">on/off</button>
-        <div v-if="sun" class="the_sun">
-
+        <div class="the_sky">
+            <div class="the_sun"></div>
+            <div class="star" v-if="false"></div>
         </div>
     </div>
 </body>
@@ -47,10 +33,8 @@
         },
 
         methods: {
-            danger() {
-                for (i = 0; i < 10;) {
-                    alert('Ваня лох')
-                }
+            getRandomInt(max) {
+                return Math.floor(Math.random() * max);
             }
         }
     }
@@ -61,30 +45,65 @@
 <style>
     body {
         text-align: center;
+        transition: all ease .5s;
+        animation: sky infinite 5s;
+        overflow: hidden;
     }
 
     .the_sun {
+        margin-left: auto;
+        margin-right: auto;
+        left: 40%;
+        width: 150px;
+        height: 150px;  
         position: absolute;
         background: darkorange;
         border-radius: 100px;
-        left: auto;
-        right: auto;
-        animation: anim infinite .5s;
-        transition: all ease .5s;
+        animation: anim infinite 5s;
+        box-shadow: initial 0 0 0 6em rgb(210, 210, 81);
+    }
+
+    .star {
+        position: relative;
+        width: 2px;
+        height: 2px;
+        background: white;
+    }
+
+
+    @keyframes sky {
+        0% {
+            background: rgb(16, 16, 59);
+        }
+
+        15% {
+            background: rgb(16, 16, 59);
+        }
+
+        50% {
+            background: lightblue;
+        }
+
+        100% {
+            background: rgb(16, 16, 59);
+        }
     }
 
     @keyframes anim {
         0% {
-            width: 100px;
-            height: 100px;
-            background: red;
+            top: -50%;
+        }
+
+        25% {
+            top: -50%;
+        }
+
+        75% {
+            top: 110%;
         }
 
         100% {
-            width: 1000px;
-            height: 1000px;
-            border-radius: 1000px;
-            background: black;
+            top: 110%;
         }
     }
 </style>
