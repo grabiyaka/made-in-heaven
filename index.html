@@ -14,7 +14,10 @@
     <div id="app">
         <div class="the_sky">
             <div class="the_sun"></div>
-            <div class="star" v-if="false"></div>
+            <div class="star" v-if="true" v-for="i in 300   " :key="i" :style="{
+                    left: getRandomInt(1500) + 'px',
+                    top: getRandomInt(800) + 'px'
+            }"></div>
         </div>
     </div>
 </body>
@@ -22,6 +25,7 @@
     let app = {
         data() {
             return {
+                with: 0,
                 count: 0,
                 name: '',
                 sun: false
@@ -29,7 +33,7 @@
         },
 
         mounted() {
-
+            
         },
 
         methods: {
@@ -48,28 +52,55 @@
         transition: all ease .5s;
         animation: sky infinite 5s;
         overflow: hidden;
+        max-width: 100%;
+        max-height: 100%;
     }
 
     .the_sun {
-        margin-left: auto;
-        margin-right: auto;
-        left: 40%;
         width: 150px;
-        height: 150px;  
+        height: 150px;
         position: absolute;
         background: darkorange;
         border-radius: 100px;
         animation: anim infinite 5s;
         box-shadow: initial 0 0 0 6em rgb(210, 210, 81);
+        z-index: 2;
     }
 
     .star {
         position: relative;
-        width: 2px;
-        height: 2px;
+        width: 1px;
+        height: 1px;
         background: white;
+        animation: star infinite 5s;
     }
 
+    @keyframes star {
+        0% {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        15% {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        50% {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        90% {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        100% {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
 
     @keyframes sky {
         0% {
@@ -84,6 +115,10 @@
             background: lightblue;
         }
 
+        90% {
+            background: rgb(16, 16, 59);
+        }
+
         100% {
             background: rgb(16, 16, 59);
         }
@@ -91,18 +126,26 @@
 
     @keyframes anim {
         0% {
-            top: -50%;
-        }
-
-        25% {
-            top: -50%;
-        }
-
-        75% {
+            left: -20%;
             top: 110%;
         }
 
+        25% {
+            left: -20%;
+            top: 70%;
+        }
+
+        40% {
+            top: 20%;
+        }
+
+        75% {
+            left: 110%;
+            top: 50%;
+        }
+
         100% {
+            left: 110%;
             top: 110%;
         }
     }
