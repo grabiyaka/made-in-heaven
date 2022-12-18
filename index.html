@@ -14,9 +14,9 @@
     <div id="app">
         <div class="the_sky">
             <div class="the_sun"></div>
-            <div class="star" v-if="true" v-for="i in 300   " :key="i" :style="{
-                    left: getRandomInt(1500) + 'px',
-                    top: getRandomInt(800) + 'px'
+            <div class="star" v-if="true" v-for="i in 300" :key="i" :style="{
+                    left: getRandomInt(width) + 'px',
+                    top: getRandomInt(height) + 'px'
             }"></div>
         </div>
     </div>
@@ -28,12 +28,14 @@
                 with: 0,
                 count: 0,
                 name: '',
-                sun: false
+                sun: false,
+                height: window.innerHeight,
+                width: window.innerWidth
             }
         },
 
         mounted() {
-            
+            console.log(this.height + ' ' + this.width);
         },
 
         methods: {
@@ -68,7 +70,7 @@
     }
 
     .star {
-        position: relative;
+        position: absolute;
         width: 1px;
         height: 1px;
         background: white;
