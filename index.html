@@ -59,14 +59,18 @@
     }
 
     .the_sun {
-        width: 150px;
-        height: 150px;
         position: absolute;
-        background: darkorange;
-        border-radius: 100px;
         animation: anim infinite 5s;
-        box-shadow: initial 0 0 0 6em rgb(210, 210, 81);
         z-index: 2;
+        display: inline-block;
+        border-radius: 50%;
+        height: 200px;
+        width: 200px;
+        background: orange;
+        box-shadow: 0 0 10px orange,
+            0 0 60px orange,
+            0 0 200px yellow,
+            inset 0 0 80px yellow;
     }
 
     .star {
@@ -110,7 +114,7 @@
         }
 
         15% {
-            background: rgb(16, 16, 59);
+            background:  rgb(16, 16, 59);
         }
 
         50% {
@@ -129,7 +133,8 @@
     @keyframes anim {
         0% {
             left: -20%;
-            top: 110%;
+            top: 70%;
+            opacity: 0;
         }
 
         25% {
@@ -138,17 +143,20 @@
         }
 
         40% {
+            opacity: 1;
             top: 20%;
         }
 
         75% {
             left: 110%;
             top: 50%;
+            opacity: 1;
         }
 
         100% {
+            opacity: 0;
             left: 110%;
-            top: 110%;
+            top: 50%;
         }
     }
 </style>
